@@ -12,14 +12,14 @@ Because the extension contains code, VS Code does not enable it in the Agents wi
 1. Open **Settings** in VS Code
 2. Search for **Extensions: Support Agents Window**
 3. Click **Add Item** and enter:
-   - **Key:** `unpublished.copilot-confirm`
+   - **Key:** `rodrigohrzm.copilot-confirm`
    - **Value:** `true`
 
 Or add it directly to your `settings.json`:
 
 ```json
 "extensions.supportAgentsWindow": {
-    "unpublished.copilot-confirm": true
+    "rodrigohrzm.copilot-confirm": true
 }
 ```
 
