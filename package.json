@@ -1,0 +1,133 @@
+{
+  "name": "copilot-confirm",
+  "displayName": "Copilot Confirm",
+  "description": "Adds a confirmation dialog before sending messages to Copilot Chat to prevent accidental submissions.",
+  "version": "0.2.0",
+  "publisher": "unpublished",
+  "engines": {
+    "vscode": "^1.114.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilotConfirm.reEnable",
+        "title": "Copilot Confirm: Re-enable Confirmation"
+      },
+      {
+        "command": "copilotConfirm.disableSession",
+        "title": "Copilot Confirm: Disable for This Session"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptChatPanel",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'panel' && !quickChatHasFocus && chatInputHasText && chatAgentKind == 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptChatPanelEditMode",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'panel' && !quickChatHasFocus && chatInputHasText && chatAgentKind != 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptQuickChat",
+        "when": "inChatInput && !withinEditSessionDiff && quickChatHasFocus && chatInputHasText && chatAgentKind == 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptQuickChatEditMode",
+        "when": "inChatInput && !withinEditSessionDiff && quickChatHasFocus && chatInputHasText && chatAgentKind != 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptInlineChat",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'editor' && chatInputHasText && chatAgentKind == 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptInlineChatEditMode",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'editor' && chatInputHasText && chatAgentKind != 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptTerminalChat",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'terminal' && chatInputHasText && chatAgentKind == 'ask'"
+      },
+      {
+        "key": "enter",
+        "command": "copilotConfirm.interceptTerminalChatEditMode",
+        "when": "inChatInput && !withinEditSessionDiff && chatLocation == 'terminal' && chatInputHasText && chatAgentKind != 'ask'"
+      },
+      {
+        "key": "ctrl+enter",
+        "command": "copilotConfirm.interceptSubmitWithCodebase",
+        "when": "inChatInput && chatInputHasText && config.copilotConfirm.interceptAllShortcuts"
+      },
+      {
+        "key": "ctrl+shift+enter",
+        "command": "copilotConfirm.interceptSendToNewChat",
+        "when": "inChatInput && chatInputHasText && config.copilotConfirm.interceptAllShortcuts"
+      },
+      {
+        "key": "alt+shift+enter",
+        "command": "copilotConfirm.interceptSubmitWithoutDispatching",
+        "when": "inChatInput && chatInputHasText && config.copilotConfirm.interceptAllShortcuts"
+      }
+    ],
+    "configuration": {
+      "title": "Copilot Confirm",
+      "properties": {
+        "copilotConfirm.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable the confirmation dialog before sending messages to Copilot Chat."
+        },
+        "copilotConfirm.surfaces.chatPanel": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation in the Chat panel and editor tab chat."
+        },
+        "copilotConfirm.surfaces.quickChat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation in the Quick Chat overlay."
+        },
+        "copilotConfirm.surfaces.inlineChat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation in Inline Chat (Ctrl+I in editor)."
+        },
+        "copilotConfirm.surfaces.terminalChat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show confirmation in Terminal Chat."
+        },
+        "copilotConfirm.interceptAllShortcuts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also show confirmation when submitting via Ctrl+Enter, Ctrl+Shift+Enter, and Alt+Shift+Enter."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js --production",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.114.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0"
+  }
+}
