@@ -2,7 +2,7 @@
   "name": "copilot-confirm",
   "displayName": "Copilot Confirm",
   "description": "Adds a confirmation dialog before sending messages to Copilot Chat to prevent accidental submissions.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "repository": {
     "type":"git",
     "url": "https://github.com/rodrigohrzm/copilot-confirm"
@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/rodrigohrzm/copilot-confirm/issues"
   },
-  "homepage": "https://github.com/rodrigohrzm/copilot-confirm",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=rodrigohrzm.copilot-confirm",
   "icon": "copilot-confirm.png",
   "license": "MIT",
   "publisher": "rodrigohrzm",

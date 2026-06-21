@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1
+
+- Version number updates
+- Updated README to clarify the current support for the Agents window
+
 ## 0.5.0
 
 - Initial release
